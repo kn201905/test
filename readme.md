@@ -283,4 +283,137 @@ class Test
 	}
 }
 ```
-　上の例では、`Test test = new Test();` とすると、p に１、q に２、r に３が代入された test が生成される。
+　上の例では、`Test test = new Test();` とすると、p に１、q に２、r に３が代入された test が生成されるはず。けれど、コンストラクタを public にしていないため、Test() というコンストラクタが見えてない状態になっている。だから、実際に利用するときには、以下のようにする。
+```
+class Test
+{
+	public Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+
+　コンストラクタには、以下のように引数を与えることができる。
+```
+class Test
+{
+	public Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public Test(int x)
+	{
+		p = x;
+		q = 2;
+		r = 3;
+	}
+
+	public Test(int y, int z)
+	{
+		p = 1;
+		q = x;
+		r = z;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+
+　この場合、`Test test = new Test(10, 11)` とすると、p = 1, q = 10, r = 11 と設定された test が出来上がる、という感じ。
+
+# テキストボックスを付けてみる
+
+　Form1.cs を見てみる。
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+		}
+	}
+}
+```
+　partial と Form は、ちょっと無視して。。。
+
+　今までの知識で、以下のことが分かる。
+```
+1) TestProgram という名前のプログラムを作る。
+2) Form1 というクラスを作る。
+　class Form1 の先頭に public とついているから、Form1 という名前は TestProgram の外からも見える状態にある。
+　他のプログラムを作るときに、TestProgram.Form1 として、TestProgram の中の Form1 を利用することができる。
+3) new Form1 として Form1 を作成すると、コンストラクタ public Form1() が実行される。
+　コンストラクタ Form1() が実行されると、InitializeComponent() が実行される。
+　（InitializeComponent() は、Form1.Designer.cs のにあるから、ちょっと見てみてほしい）
+```
+
+　さて、Form1 を生成すると、Form1() が実行されるから、その中にコードを追加してみたい。
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+
+			Size box_size;
+			box_size = new Size(100, 100);
+
+			TextBox text_box;
+			text_box = new TextBox();
+			text_box.Size = box_size;
+			text_box.Multiline = true;
+
+			this.Controls.Add(text_box);
+		}
+	}
+}
+```
+　C# は名前を決めて、その名前で実際に利用できるようにメモリを確保する。というのが基本。
+
+　昨日も言ったけど、「this.」は省略可能。自分自身（ウィンドウのこと（＝Form））に、Controls を Add するよ、って書いた方が分かりやすいから、「this.」を書いてるだけ。
+
+　上の例は、普通は省略して以下のように書く。
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+
+			TextBox text_box = new TextBox();
+			text_box.Size = new Size(100, 100);
+			text_box.Multiline = true;
+
+			this.Controls.Add(text_box);
+		}
+	}
+}
+```
