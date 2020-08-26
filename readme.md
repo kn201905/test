@@ -89,4 +89,55 @@ namespace TestProgram
 ```
 
 # class
-・
+* C# は、とにかく名前をつけて、名前のあるものに対して命令を下していく感じ。プログラム自体にも名前を付けなければならい。(1)-(3) に共通してある namespace のところにプログラムの名前が書いてある。
+
+　(1)-(3) をまとめて、以下のように書いても同じ。
+```
+namespace TestProgram
+{
+	static class Program
+	{
+		[STAThread]
+		static void Main()
+		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new Form1());
+		}
+	}
+
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+		}
+	}
+
+	partial class Form1
+	{
+		private System.ComponentModel.IContainer components = null;
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows フォーム デザイナーで生成されたコード
+
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Text = "Form1";
+		}
+
+		#endregion
+	}
+}
+```
