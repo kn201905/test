@@ -7,3 +7,82 @@
 
 　できあがるファイルで、重要なのは下の３つ。
 
+(1) Program.cs
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TestProgram
+{
+	static class Program
+	{
+		[STAThread]
+		static void Main()
+		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new Form1());
+		}
+	}
+}
+```
+
+(2) Form1.cs
+```
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+		}
+	}
+}
+```
+
+(3) Form1.Designers.cs 
+```
+namespace TestProgram
+{
+	partial class Form1
+	{
+		private System.ComponentModel.IContainer components = null;
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows フォーム デザイナーで生成されたコード
+
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Text = "Form1";
+		}
+
+		#endregion
+	}
+}
+
+```
