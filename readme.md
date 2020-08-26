@@ -358,7 +358,7 @@ namespace TestProgram
 	}
 }
 ```
-　partial と Form は、ちょっと無視して。。。
+　「partial」と「: Form」は、ちょっと無視して。。。
 
 　今までの知識で、以下のことが分かる。
 ```
