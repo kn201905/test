@@ -363,9 +363,11 @@ namespace TestProgram
 　今までの知識で、以下のことが分かる。
 ```
 1) TestProgram という名前のプログラムを作る。
+
 2) Form1 というクラスを作る。
 　class Form1 の先頭に public とついているから、Form1 という名前は TestProgram の外からも見える状態にある。
 　他のプログラムを作るときに、TestProgram.Form1 として、TestProgram の中の Form1 を利用することができる。
+
 3) new Form1 として Form1 を作成すると、コンストラクタ public Form1() が実行される。
 　コンストラクタ Form1() が実行されると、InitializeComponent() が実行される。
 　（InitializeComponent() は、Form1.Designer.cs のにあるから、ちょっと見てみてほしい）
