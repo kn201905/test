@@ -373,7 +373,7 @@ namespace TestProgram
 　（InitializeComponent() は、Form1.Designer.cs のにあるから、ちょっと見てみてほしい）
 ```
 
-　さて、Form1 を生成すると、Form1() が実行されるから、その中にコードを追加してみたい。
+　さて、Form1（＝ウィンドウのこと）を生成すると、Form1() が実行されるから、その中にコードを追加してみたい。
 ```
 namespace TestProgram
 {
