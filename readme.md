@@ -544,6 +544,7 @@ namespace TestProgram
 		void OnClick_Button(object sender, EventArgs e)
 		{
 			text_box.AppendText("Hello.\r\n");  // \r\n は改行の意味
+			//「text_box が見つからない」というエラーになる
 		}
 	}
 }
