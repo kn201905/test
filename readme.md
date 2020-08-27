@@ -629,5 +629,5 @@ namespace TestProgram
 }
 ```
 
-class Form1 {} というのは、Form1 が **「部品として何を持っているか」** 列挙する構文のため。
+　class Form1 {} というのは、Form1 が **「部品として何を持っているか」** 列挙する構文のため。
 
