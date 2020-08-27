@@ -613,22 +613,43 @@ namespace TestProgram
 # class の定義の書き方
 　メソッドの外側でできるのは、「名前を決める」or「名前を決めて、メモリを確保する」だけ。以下のような書き方はエラー。
 ```
-namespace TestProgram
-{
-	public partial class Form1 : Form
-	{
-		TextBox text_box = new TextBox();
-		text_box.Size = new Size(100, 100);
-		this.Controls.Add(text_box);
+エラーとなる書き方
 
-		public Form1()
-		{
-			InitializeComponent();
-		}
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	text_box.Size = new Size(100, 100);
+	text_box.Multiline = true;
+	this.Controls.Add(text_box);
+
+	public Form1()
+	{
+		InitializeComponent();
 	}
 }
 ```
 
-　class Form1 {} というのは、Form1 が **「部品として何を持っているか」** 列挙する構文のため。
+　class Form1 {} というのは、Form1 が **「部品として何を持っているか」** を列挙する構文のため。
+```
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	Button btn = new Button();
 
-class Form1 {} というのは、Form1 が **「部品として何を持っているか」** 列挙する構文のため。
+	public Form1()
+	{
+		InitializeComponent();
+
+		text_box.Size = new Size(100, 100);
+		text_box.Multiline = true;
+		this.Controls.Add(text_box);
+	}
+}
+```
+　上のようにすると、Form1 は、以下の **「３つの部品を持つ」** という意味になる。
+
+* text_box という名前の TextBox
+* btn という名前の Button 
+* 引数なしのコンストラクタ（Form1() のこと）
+
+　もし、text_box にメッセージを表示したい場合、class Form1 {} の中に、メッセージを表示するメソッドを書き加えていくことになる。
