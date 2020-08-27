@@ -781,7 +781,7 @@ pattial class Form1 : Form
 System.Windows.Forms.Button btn = new System.Windows.Forms.Button();
 System.Windows.Forms.TextBox text_box = new System.Windows.Forms.TextBox();
 ```
-　当然ながら上のように何度も細かい区切りを書くのが面倒なので、using という命令を用いる。
+　当然ながら上のように何度も細かい区切りを書くのが面倒なので、using という命令を利用する。
 ```
 using System.Windows.Forms;
 
