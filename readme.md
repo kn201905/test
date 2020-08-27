@@ -242,7 +242,8 @@ class Test
 	}
 }
 
-test.p = 1;  // エラーなく実行できる
+Test test = new Test();
+test.p = 1;　　// エラーなく実行可能
 ```
 
 # コンストラクタ
