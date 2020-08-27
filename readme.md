@@ -788,7 +788,7 @@ using System.Windows.Forms;
 Button btn = new Button();
 TextBox text_box = new TextBox();
 ```
-　using を書いておくと、Button などの前に「System.Windows.Forms」という言葉が自動的に補完されるようになる、ということ。
+　using を書いておくと、Button などの前に「System.Windows.Forms」という言葉が自動的に補完されるようになる。
 
 　Form1.Designer.cs では using が使われていないため、Button などを作るときに長い名前になっている、ということを知っておけば良いと思う。
 
