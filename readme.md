@@ -419,10 +419,10 @@ namespace TestProgram
 ```
 　この状態でビルドして実行すると、テキストボックスが張り付いたウィンドウが表示される。
 　
-　text_box.Multiline = true; の１行を削除したものも実行してみてくれる？
+* 実験のために、text_box.Multiline = true; の１行を削除したものも実行してみて。Multiline を指定しないと、テキストボックスは１行しか入力できないものに変わる。
 
 # テキストボックスの位置を変える
-　TextBox の位置を変える場合、Location を変更する。以下のようなコードを追加してみて。
+　TextBox の位置を変える場合、Location を変更する。以下のようなコードを追加して実験。
 ```
 Point box_pos;
 box_pos = new Point(50, 50);
@@ -434,3 +434,29 @@ text_box.Location = new Point(50, 50);
 ```
 
 # ボタンを追加する
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+
+			TextBox text_box;
+			text_box = new TextBox();
+			text_box.Size = new Size(100, 100);
+			text_box.Multiline = true;
+			text_box.Location = new Point(50, 50);
+
+			this.Controls.Add(text_box);
+
+
+			Button btn = new Button();
+			btn.Text = "ボタン";
+
+			this.Controls.Add(btn);
+		}
+	}
+}
+```
