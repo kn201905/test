@@ -750,6 +750,30 @@ pattial class Form1 : Form
 }
 ```
 
+# using
+　C# には、膨大な命令が詰め込まれている。ウィンドウを表示する命令とか、テキストボックスに文字列を表示する命令とか、ネットに接続する命令とか。。
+
+　それで、頭の中を整理しやすいように、名前空間（最初に紹介した namespace）で細かく区切りを入れている。
+
+　実は、今まで使っていた Button や TextBox は System の中の Windows の中の Forms という区切りの中にある。
+
+　Button や TextBox を作りたい場合、その細かい区切りの中にある Button や TextBox を作るよ、と指示をするために、正確に書くと以下のようになる。
+```
+System.Windows.Forms.Button btn = new System.Windows.Forms.Button();
+System.Windows.Forms.TextBox text_box = new System.Windows.Forms.TextBox();
+```
+　当然ながら上のように何度も細かい区切りを書くのが面倒なので、using という構文を用いる。
+```
+using System.Windows.Forms;
+
+Button btn = new Button();
+TextBox text_box = new TextBox();
+```
+　using を書いておくと、Button などの前に「System.Windows.Forms」という言葉が自動的に補完されるようになる、ということ。
+
+　Form1.Designer.cs では using が使われていないため、Button などを作るときに長い名前になっている、ということを知っておけば良いと思う。
+
+
 # 最後に１つ
 　以上のことが分かれば、昨日のコードは動作するように書き直せると思う。ただ、イベントハンドラの書き方が２通りあるため、混乱するかも。以下の２つの書き方は同じもの、って知っておいてほしい。詳しい意味については、また後ほど、、、
 
