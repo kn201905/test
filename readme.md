@@ -562,7 +562,7 @@ namespace TestProgram
 	public partial class Form1 : Form
 	{
 		// ここで、text_box という名前を作っておけば、
-		// この名前は Form1() からも OnClick_Button() からも見ることができる。
+		// この名前は Form1() からも OnClick_Button() からも共通して見ることができる。
 		TextBox text_box;
 
 		public Form1()
