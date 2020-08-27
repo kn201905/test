@@ -429,6 +429,7 @@ box_pos = new Point(50, 50);
 
 text_box.Location = box_pos;
 ```
+または、
 ```
 text_box.Location = new Point(50, 50);
 ```
