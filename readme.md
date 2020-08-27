@@ -166,6 +166,7 @@ test.p = 1;
 Test test;
 test = new Test();  // () の意味は後ほど。
 ```
+または、
 ```
 Test test = new Test();
 ```
