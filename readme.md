@@ -718,7 +718,7 @@ public partial class Form1
 	Button btn = new Button();  // btn の定義だけを、別に書くこともできる。それだけの話
 }
 ```
-
+<BR>
 
 * まだ `「: Form」` の意味を説明してないけど、partial で class を分割する場合、「: Form」はどこか１ヶ所に書いてあれば良い、ということになっている。また、複数に書いても良い。
 
