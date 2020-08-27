@@ -669,7 +669,7 @@ public partial class Form1 : Form
 * btn という名前の Button 
 * 引数なしのコンストラクタ（Form1() のこと）
 
-　もし、text_box にメッセージを表示したい場合、class Form1 {} の中に、メッセージを表示するメソッドを書き加えていくことになる。
+　もし、text_box にメッセージを表示したい場合、class Form1 { } の中に、メッセージを表示するメソッドを書き加えていくことになる。
 
 # partial の意味
 　class を設計する際、多くの部品が必要になることがある。その場合、partial を付けて class の設計を分割することができる。
