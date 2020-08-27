@@ -461,3 +461,170 @@ namespace TestProgram
 	}
 }
 ```
+
+# ボタンを押したら、ウィンドウが閉じるようにする
+* ウィンドウを閉じるときは、Form に Close() を命令すればよい。
+* Button クラスで作成されたオブジェクト（＝「もの」っていう意味）は、ボタンが押されると Click に指定されたメソッド（＝関数）を呼び出す。
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+
+			TextBox text_box;
+			text_box = new TextBox();
+			text_box.Size = new Size(100, 100);
+			text_box.Multiline = true;
+			text_box.Location = new Point(50, 50);
+
+			this.Controls.Add(text_box);
+
+
+			Button btn = new Button();
+			btn.Text = "ボタン";
+			btn.Click += OnClick_Button;
+
+			this.Controls.Add(btn);
+		}
+
+		// object sender, EventArgs e の意味は後で。
+		// 理解できるようになるのは、かなり後になるかも、、
+		void OnClick_Button(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+	}
+}
+```
+
+# ボタンを押したら、テキストボックスにメッセージを表示する
+* テキストボックスに、メッセージを追加表示させたい場合は AppendText() という命令を使う。
+* 考え方としては以下のようになるけれど、以下のままではエラーとなる。
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+
+			TextBox text_box;
+			text_box = new TextBox();
+			text_box.Size = new Size(100, 100);
+			text_box.Multiline = true;
+			text_box.Location = new Point(50, 50);
+
+			this.Controls.Add(text_box);
+
+
+			Button btn = new Button();
+			btn.Text = "ボタン";
+			btn.Click += OnClick_Button;
+
+			this.Controls.Add(btn);
+		}
+
+		void OnClick_Button(object sender, EventArgs e)
+		{
+			text_box.AppendText("Hello.\r\n");  // \r\n は改行の意味
+		}
+	}
+}
+```
+
+* エラーとなる理由
+　C と同じで、変数などに付けた名前は {} の内側からしか見ることができないため。
+
+　{} の外側に書かれた名前は見ることができるため、以下のようにすればよい。
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		// ここで、text_box という名前を作っておけば、
+		// この名前は Form1() からも OnClick_Button() からも見ることができる。
+		TextBox text_box;
+
+		public Form1()
+		{
+			InitializeComponent();
+
+			text_box = new TextBox();
+			text_box.Size = new Size(100, 100);
+			text_box.Multiline = true;
+			text_box.Location = new Point(50, 50);
+
+			this.Controls.Add(text_box);
+
+
+			Button btn = new Button();
+			btn.Text = "ボタン";
+			btn.Click += OnClick_Button;
+
+			this.Controls.Add(btn);
+		}
+
+		void OnClick_Button(object sender, EventArgs e)
+		{
+			text_box.AppendText("Hello.\r\n");
+		}
+	}
+}
+```
+　名前を作ると同時に new をすることもできるから、以下のように書いてもよい。（`new TextBox();` の場所が変わっただけ）
+
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		TextBox text_box = new TextBox();
+
+		public Form1()
+		{
+			InitializeComponent();
+
+			text_box.Size = new Size(100, 100);
+			text_box.Multiline = true;
+			text_box.Location = new Point(50, 50);
+
+			this.Controls.Add(text_box);
+
+
+			Button btn = new Button();
+			btn.Text = "ボタン";
+			btn.Click += OnClick_Button;
+
+			this.Controls.Add(btn);
+		}
+
+		void OnClick_Button(object sender, EventArgs e)
+		{
+			text_box.AppendText("Hello.\r\n");
+		}
+	}
+}
+```
+
+# class の定義の書き方
+　メソッドの外側でできるのは、「名前を決める」or「名前を決めて、メモリを確保する」だけ。以下のような書き方はエラー。
+```
+namespace TestProgram
+{
+	public partial class Form1 : Form
+	{
+		TextBox text_box = new TextBox();
+		text_box.Size = new Size(100, 100);
+		this.Controls.Add(text_box);
+
+		public Form1()
+		{
+			InitializeComponent();
+		}
+	}
+}
+```
