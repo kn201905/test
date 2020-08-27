@@ -396,7 +396,7 @@ namespace TestProgram
 * C# はプラモデルみたいな感じ。部品を作って、それに命令を出す、っていうのを繰り返す。
 
 
-　上の例は、普通は省略して以下のように書く。
+　上の例は、省略して以下のように書ける。
 ```
 namespace TestProgram
 {
@@ -414,4 +414,19 @@ namespace TestProgram
 		}
 	}
 }
+```
+　この状態でビルドして実行すると、テキストボックスが張り付いたウィンドウが表示される。
+　
+　text_box.Multiline = true; の１行を削除したものも実行してみてくれる？
+
+# テキストボックスの位置を変える
+　TextBox の位置を変える場合、Location を変更する。以下のようなコードを追加してみて。
+```
+Point box_pos;
+box_pos = new Point(50, 50);
+
+text_box.Location = box_pos;
+```
+```
+text_box.Location = new Point(50, 50);
 ```
