@@ -658,3 +658,55 @@ public partial class Form1 : Form
 * 引数なしのコンストラクタ（Form1() のこと）
 
 　もし、text_box にメッセージを表示したい場合、class Form1 {} の中に、メッセージを表示するメソッドを書き加えていくことになる。
+
+# partial の意味
+　class を設計する際、多くの部品が必要になることがある。その場合、partial を付けて class の設計を分割することができる。
+
+　以下の２つは同じ意味。
+```
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	Button btn = new Button();
+
+	public Form1()
+	{
+		InitializeComponent();
+
+		text_box.Size = new Size(100, 100);
+		text_box.Multiline = true;
+		this.Controls.Add(text_box);
+
+		btn.Text = "ボタン";
+		this.Controls.Add(btn);
+	}
+}
+```
+```
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+
+	public Form1()
+	{
+		InitializeComponent();
+
+		text_box.Size = new Size(100, 100);
+		text_box.Multiline = true;
+		this.Controls.Add(text_box);
+
+		btn.Text = "ボタン";
+		this.Controls.Add(btn);
+	}
+}
+
+public partial class Form1
+{
+	Button btn = new Button();  // btn の定義だけを、別に書くこともできる。それだけの話w
+}
+```
+
+* まだ `「: Form」` の意味を説明してないけど、partial で class を分割する場合、「: Form」はどこか１ヶ所に書いてあれば良い、ということになっている。また、複数に書いても良い。
+
+　以下は、全部同じ意味となる。
+
