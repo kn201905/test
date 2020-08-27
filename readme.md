@@ -244,6 +244,7 @@ class Test
 
 Test test = new Test();
 test.p = 1;　　// エラーなく実行可能
+test.q = 2;　　// これはエラー
 ```
 
 # コンストラクタ
