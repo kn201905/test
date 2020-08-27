@@ -389,11 +389,11 @@ namespace TestProgram
 		{
 			InitializeComponent();
 
-			Size box_size;
-			box_size = new Size(100, 100);
+			Size box_size;　　　　　　　　　　// 名前を付ける
+			box_size = new Size(100, 100);　// メモリを確保する
 
-			TextBox text_box;
-			text_box = new TextBox();
+			TextBox text_box;　　　　　　// 名前を付ける
+			text_box = new TextBox();　　// メモリを確保する
 			text_box.Size = box_size;
 			text_box.Multiline = true;
 
