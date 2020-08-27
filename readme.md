@@ -643,7 +643,7 @@ public partial class Form1 : Form
 }
 ```
 
-　class Form1 {} というのは、Form1 が **「部品として何を持っているか」** を列挙する構文のため。
+　class Form1 { } というのは、Form1 が **「部品として何を持っているか」** を列挙する構文のため。
 ```
 public partial class Form1 : Form
 {
