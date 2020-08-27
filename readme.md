@@ -199,7 +199,12 @@ class Test
 }
 ```
 
-　上記の例で、 `Test test = new Test(); test.Add();` とすると、test.r = test.p + test.q が実行されるはず。
+　上記の例で、 
+```
+Test test = new Test();
+test.Add();
+```
+ とすると、test.r = test.p + test.q が実行されるはず。
 
 　しかし、class は **「自分の中に含まれているものを、外に見せない」** という性質を持っているため、p とか q とか rとか Add() というのがあるのは見えているけど、test に Add() をさせるために test.Add() としてもエラーになる。
 
