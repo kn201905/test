@@ -755,7 +755,7 @@ pattial class Form1 : Form
 
 　それで、頭の中を整理しやすいように、名前空間（最初に紹介した namespace）で細かく区切りを入れている。
 
-　実は、今まで使っていた Button や TextBox は System の中の Windows の中の Forms という区切りの中にある。
+　実は、今まで使っていた Button や TextBox は、System の中の Windows の中の Forms という区切りの中にある。
 
 　Button や TextBox を作りたい場合、その細かい区切りの中にある Button や TextBox を作るよ、と指示をするために、正確に書くと以下のようになる。
 ```
