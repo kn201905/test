@@ -702,11 +702,50 @@ public partial class Form1 : Form
 
 public partial class Form1
 {
-	Button btn = new Button();  // btn の定義だけを、別に書くこともできる。それだけの話w
+	Button btn = new Button();  // btn の定義だけを、別に書くこともできる。それだけの話
 }
 ```
 
 * まだ `「: Form」` の意味を説明してないけど、partial で class を分割する場合、「: Form」はどこか１ヶ所に書いてあれば良い、ということになっている。また、複数に書いても良い。
 
 　以下は、全部同じ意味となる。
+```
+class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	Button btn = new Button();
+}
+```
+```
+pattial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+}
 
+pattial class Form1
+{
+	Button btn = new Button();
+}
+```
+```
+pattial class Form1
+{
+	TextBox text_box = new TextBox();
+}
+
+pattial class Form1 : Form
+{
+	Button btn = new Button();
+}
+```
+```
+pattial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+}
+
+pattial class Form1 : Form
+{
+	Button btn = new Button();
+}
+```
