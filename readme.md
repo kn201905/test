@@ -794,7 +794,7 @@ TextBox text_box = new TextBox();
 
 
 # 最後に１つ
-　以上のことが分かれば、昨日のコードは動作するように書き直せると思う。ただ、イベントハンドラの書き方が２通りあるため、混乱するかも。以下の２つの書き方は同じもの、って知っておけばＯＫ。詳しい意味については、また後ほど、、、
+　以上のことが分かれば、昨日のコードは動作するように書き直せると思う。ただ、イベントハンドラの書き方が２通りあるため、混乱するかも。以下の２つの書き方は同じもの、って知っておけばＯＫ（★ の部分が異なるだけ）。詳しい意味については、また後ほど、、、
 
 * (1)
 ```
@@ -804,7 +804,7 @@ class Form1 : Form
 
 	public Form1()
 	{
-		btn.Click += OnClick_Button;
+		btn.Click += OnClick_Button;　　// (★)
 	}
 
 	void OnClick_Button(object sender, EventArgs e)
@@ -820,7 +820,7 @@ class Form1 : Form
 
 	public Form1()
 	{
-		btn.Click += new System.EventHandler(OnClick_Button);
+		btn.Click += new System.EventHandler(OnClick_Button);　　// ((★)
 	}
 
 	void OnClick_Button(object sender, EventArgs e)
