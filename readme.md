@@ -1,5 +1,5 @@
-* ありは自分で考えるのが得意なように思えるから、大雑把な説明だけ。
-* C# は簡単だけど、C の知識があることで逆に間違えやすいところがあるから注意、、、
+* ありは自分で考えるのが得意なように思えるから、大まかな説明のみを。細かいところは脳内補完で、、
+* C# は簡単だけど、C の知識があることで逆に間違えやすいところがあるから注意かな、、、
 
 # まずは動くものを作る
 　今までのファイルは後で直すとして、新規プロジェクトを作成。
@@ -10,12 +10,6 @@
 
 (1) Program.cs
 ```
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace TestProgram
 {
 	static class Program
@@ -33,16 +27,6 @@ namespace TestProgram
 
 (2) Form1.cs
 ```
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace TestProgram
 {
 	public partial class Form1 : Form
