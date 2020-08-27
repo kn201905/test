@@ -643,6 +643,9 @@ public partial class Form1 : Form
 		text_box.Size = new Size(100, 100);
 		text_box.Multiline = true;
 		this.Controls.Add(text_box);
+
+		btn.Text = "ボタン";
+		this.Controls.Add(btn);
 	}
 }
 ```
