@@ -437,10 +437,10 @@ namespace TestProgram
 # テキストボックスの位置を変える
 　TextBox の位置を変える場合、Location を変更する。以下のようなコードを追加して実験。
 ```
-Point box_pos;
-box_pos = new Point(50, 50);
+Point box_pos;　　　　　　　　　// 名前を決める
+box_pos = new Point(50, 50);　// new でメモリを確保する
 
-text_box.Location = box_pos;
+text_box.Location = box_pos;　// 作った位置（Point）を渡す
 ```
 または、
 ```
