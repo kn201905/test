@@ -694,6 +694,7 @@ public partial class Form1 : Form
 	}
 }
 ```
+または、
 ```
 public partial class Form1 : Form
 {
@@ -728,6 +729,7 @@ class Form1 : Form
 	Button btn = new Button();
 }
 ```
+または、
 ```
 pattial class Form1 : Form
 {
@@ -739,6 +741,7 @@ pattial class Form1
 	Button btn = new Button();
 }
 ```
+または、
 ```
 pattial class Form1
 {
@@ -750,6 +753,7 @@ pattial class Form1 : Form
 	Button btn = new Button();
 }
 ```
+または、
 ```
 pattial class Form1 : Form
 {
