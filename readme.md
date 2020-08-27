@@ -390,10 +390,10 @@ namespace TestProgram
 			InitializeComponent();
 
 			Size box_size;　　　　　　　　　　// 名前を付ける
-			box_size = new Size(100, 100);　// メモリを確保する
+			box_size = new Size(100, 100);　// new でメモリを確保する
 
 			TextBox text_box;　　　　　　// 名前を付ける
-			text_box = new TextBox();　　// メモリを確保する
+			text_box = new TextBox();　　// new でメモリを確保する
 			text_box.Size = box_size;
 			text_box.Multiline = true;
 
@@ -404,7 +404,7 @@ namespace TestProgram
 ```
 * 上のようにすると、Form1（＝ウィンドウ）が作られるときに、text_box などが追加で作成される。
 
-* C# は名前を決めて、その名前を実際に利用できるようにメモリを確保する。というのが基本。
+* C# は名前を決めて、その名前を実際に利用できるように new でメモリを確保する。というのが基本。
 
 * 昨日言ったことけど、「this.」は省略可能。自分自身（＝Form1）の Controls に text_box を Add する、って書いた方が分かりやすいから、「this.Controls.Add()」と書いてるだけ。
 
