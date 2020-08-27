@@ -317,7 +317,7 @@ class Test
 	public Test(int y, int z)
 	{
 		p = 1;
-		q = x;
+		q = y;
 		r = z;
 	}
 
@@ -336,7 +336,7 @@ class Test
 
 # テキストボックスを付けてみる
 
-　Form1.cs を見てみる。
+　Form1.cs を見てみる。（Form とは「ウィンドウ」のこと）
 ```
 namespace TestProgram
 {
@@ -355,16 +355,16 @@ namespace TestProgram
 ```
 1) TestProgram という名前のプログラムを作る。
 
-2) Form1 というクラスを作る。
+2) Form1 というクラスが設計されている。
 　class Form1 の先頭に public とついているから、Form1 という名前は TestProgram の外からも見える状態にある。
 　他のプログラムを作るときに、TestProgram.Form1 として、TestProgram の中の Form1 を利用することができる。
 
-3) new Form1 として Form1 を作成すると、コンストラクタ public Form1() が実行される。
+3) Form1 を作成するとき、コンストラクタ public Form1() が実行される。
 　コンストラクタ Form1() が実行されると、InitializeComponent() が実行される。
 　（InitializeComponent() は、Form1.Designer.cs のにあるから、ちょっと見てみてほしい）
 ```
 
-　さて、Form1（＝ウィンドウのこと）を生成すると、Form1() が実行されるから、その中にコードを追加してみたい。
+　Form1 のコンストラクタにコードを追加してみる。
 ```
 namespace TestProgram
 {
@@ -387,9 +387,14 @@ namespace TestProgram
 	}
 }
 ```
-　C# は名前を決めて、その名前で実際に利用できるようにメモリを確保する。というのが基本。
+* 上のようにすると、Form1（＝ウィンドウ）が作られるときに、text_box などが追加で作成される。
 
-　昨日も言ったけど、「this.」は省略可能。自分自身（ウィンドウのこと（＝Form1））の Controls に text_box を Add するよ、って書いた方が分かりやすいから、「this.」を書いてるだけ。
+* C# は名前を決めて、その名前で実際に利用できるようにメモリを確保する。というのが基本。
+
+* 昨日言ったことけど、「this.」は省略可能。自分自身（＝Form1）の Controls に text_box を Add する、って書いた方が分かりやすいから、「this.」を書いてるだけ。
+
+* C# はプラモデルみたいな感じ。部品を作って、それに命令を出す、っていうのを繰り返す。
+
 
 　上の例は、普通は省略して以下のように書く。
 ```
