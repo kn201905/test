@@ -180,7 +180,7 @@ TextBox text_box = new TextBox();
 
    * this は、`class Form1 { ... }` の中にあるので、this というのは Form1 を指すことになる。
    * `this.Controls.Add(...)` は、Form1 の Controls（＝テキストボックスやボタンなどのコントロールの集合）に、`...` を Add せよ、という意味。
-   * text_box を Form1 の Controls に Add せよ、という意味になる。
+   * Form1（=this）の Controls に text_box を Add せよ、という意味になる。
 
 * この状態でビルドして実行すると、テキストボックスが張り付いたウィンドウが表示される。
 　
