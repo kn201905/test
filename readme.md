@@ -19,7 +19,7 @@ https://qiita.com/grinpeaceman/items/b5a6082f94c9e4891613
 
 # 動作したファイルの確認
 
-　できあがるファイルで、重要なのは下の３つ。
+　できあがるファイルで重要なのは下の３つ。namespace の後ろの TestProgram という名前は、作成時に指定した名前になっていると思う。
 
 (ア) Program.cs
 ```
@@ -52,7 +52,7 @@ namespace TestProgram
 }
 ```
 
-(ウ) Form1.Designers.cs 
+(ウ) Form1.Designers.cs（ソリューションエクスプローラで、▶ マークをいろいろ押してみると出てくると思う）
 ```
 namespace TestProgram
 {
@@ -85,6 +85,9 @@ namespace TestProgram
 
 ```
 
+# namespace について
+　C# では、プログラムは何らかの namespace に入っている必要がある。ファイルが分かれてても namespace が同じなら同じプログラムとみなされる。
+
 # 実行時の動作の流れ
 
 * (ア) の static void Main() からプログラムが開始される。
@@ -99,6 +102,9 @@ Application.SetCompatibleTextRenderingDefault(false);
       * `new Form1()` で、Form1 を新規作成する。Form1 の後ろの () は、作成するときに追加の指示を出したい時に利用する。今は追加の指示は出さないので () の中身は空。
    * フォーム ≒ アプリケーションウィンドウ
    * Form1 という名前を変えたければ、(イ)、(ウ) の Form1 と書いてあるところを書き換えればＯＫ。
+
+* `new Form1()` についてもう少し
+
 
 
 # テキストボックスを付けてみる
