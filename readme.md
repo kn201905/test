@@ -93,7 +93,8 @@ namespace TestProgram
 Application.EnableVisualStyles();
 Application.SetCompatibleTextRenderingDefault(false);
 ```
-* `Application.Run(new Form1());`  の `new Form1()` について  
+* `Application.Run(new Form1());`  の `new Form1()` について
+
    * 新規作成命令が `new`
       * `new Form1()` で、Form1 を新規作成する。Form1 の後ろの () は、作成するときに追加の指示を出したい時に利用する。今は追加の指示は出さないので () の中身は空。
    * フォーム ≒ アプリケーションウィンドウ
