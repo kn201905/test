@@ -151,10 +151,10 @@ namespace TestProgram
 			InitializeComponent();
 
 			Size box_size;　　　　　　　　　　// 名前を付ける
-			box_size = new Size(100, 100);　// new でメモリを確保する
+			box_size = new Size(100, 100);　// new で生成する
 
 			TextBox text_box;　　　　　　// 名前を付ける
-			text_box = new TextBox();　　// new でメモリを確保する
+			text_box = new TextBox();　　// new で生成する
 			text_box.Size = box_size;
 			text_box.Multiline = true;
 
@@ -163,37 +163,33 @@ namespace TestProgram
 	}
 }
 ```
-* 上のようにすると、Form1（＝ウィンドウ）が作られるときに、text_box などが追加で作成される。
 
-* C# は名前を決めて、その名前を実際に利用できるように new でメモリを確保する。というのが基本。
+* `TextBox` は、`Size` や `Multiline` などのプロパティ（＝属性値）を持つので、生成した後にそれらのプロパティを設定している。
 
-* 昨日言ったことけど、「this.」は省略可能。自分自身（＝Form1）の Controls に text_box を Add する、って書いた方が分かりやすいから、「this.Controls.Add()」と書いてるだけ。
+   * ｀text_box.Multiline = true;｀ としておかないと、１行しか表示できないテキストボックスとなってしまう。
 
-* C# はプラモデルみたいな感じ。部品を作って、それに命令を出す、っていうのを繰り返す。
+* 「名前を決める」のと、「new で生成する」のを２行に分けて書くのが面倒くさい場合は、まとめることができる。以下の (a) と (b) は同じ意味になる。
 
-
-　上の例は、省略して以下のように書ける。
+(a)
 ```
-namespace TestProgram
-{
-	public partial class Form1 : Form
-	{
-		public Form1()
-		{
-			InitializeComponent();
-
-			TextBox text_box = new TextBox();
-			text_box.Size = new Size(100, 100);
-			text_box.Multiline = true;
-
-			this.Controls.Add(text_box);
-		}
-	}
-}
+TextBox text_box;
+text_box = new TextBox();
 ```
+(b)
+```
+TextBox text_box = new TextBox();
+```
+
+
+
 　この状態でビルドして実行すると、テキストボックスが張り付いたウィンドウが表示される。
 　
 * 実験のために、text_box.Multiline = true; の１行を削除したものも実行してみて。Multiline を指定しないと、テキストボックスは１行しか入力できないものに変わる。
+
+
+
+
+
 
 # テキストボックスの位置を変える
 　TextBox の位置を変える場合、Location を変更する。以下のようなコードを追加して実験。
