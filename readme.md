@@ -131,35 +131,16 @@ Application.SetCompatibleTextRenderingDefault(false);
 
 # テキストボックスを付けてみる
 
-　Form1.cs を見てみる。（Form とは「ウィンドウ」のこと）
-```
-namespace TestProgram
-{
-	public partial class Form1 : Form
-	{
-		public Form1()
-		{
-			InitializeComponent();
-		}
-	}
-}
-```
-　「partial」と「: Form」は、ちょっと無視して。。。
+　(イ) のファイルの、`Form1()` にコードを追加してみる。何らかの部品を作る場合は、次のようにする。
 
-　今までの知識で、以下のことが分かる。
-```
-1) TestProgram という名前のプログラムを作る。
+* `「作成したい部品の class名」 「部品に付ける名前」;` で、部品の名前を決定する。
 
-2) Form1 というクラスが設計されている。
-　class Form1 の先頭に public とついているから、Form1 という名前は TestProgram の外からも見える状態にある。
-　他のプログラムを作るときに、TestProgram.Form1 として、TestProgram の中の Form1 を利用することができる。
+   * (例) `Size box_size;`　box_size は、`Size` というクラスの部品を表す名前。
 
-3) Form1 を作成するとき、コンストラクタ public Form1() が実行される。
-　コンストラクタ Form1() が実行されると、InitializeComponent() が実行される。
-　（InitializeComponent() は、Form1.Designer.cs のにあるから、ちょっと見てみてほしい）
-```
+* `「部品の名前」＝ new「class名」` で、実際に部品を生成する。
 
-　Form1 のコンストラクタにコードを追加してみる。
+   * (例) `box_size = new Size(100, 100);` で、横 100 pixel、縦 100 pixel の大きさの `Size` オブジェクト（＝もの）を作り、それを `box_size` に割り当てる。今回は、「横 100 pixel、縦 100 pixel」という情報を追加するために、() の中に情報を追加している。
+
 ```
 namespace TestProgram
 {
