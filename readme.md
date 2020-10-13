@@ -2,15 +2,26 @@
 # C# のインストール
 
 　以下の URL あたりを参考に。
+
 https://qiita.com/grinpeaceman/items/b5a6082f94c9e4891613
 
 # まずは動くものを作る
 
-　ファイル -> 新規作成 -> プロジェクト で、C# の「Windows フォームアプリケーション」を作成
+　ファイル -> 新規作成 -> プロジェクト で、C# の「Windows フォームアプリケーション」を作成。
+
+　お試しなので、名前などは適当に。
+
+# とりあえず実行
+
+　ビルドして、とりあえず実行（F5 キーで実行できると思う）
+
+　ウィンドウが１枚開けばＯＫ。「✕」ボタンでウィンドウを閉じれば終了。
+
+# 動作したファイルの確認
 
 　できあがるファイルで、重要なのは下の３つ。
 
-(1) Program.cs
+(ア) Program.cs
 ```
 namespace TestProgram
 {
@@ -27,7 +38,7 @@ namespace TestProgram
 }
 ```
 
-(2) Form1.cs
+(イ) Form1.cs
 ```
 namespace TestProgram
 {
@@ -41,7 +52,7 @@ namespace TestProgram
 }
 ```
 
-(3) Form1.Designers.cs 
+(ウ) Form1.Designers.cs 
 ```
 namespace TestProgram
 {
@@ -74,280 +85,12 @@ namespace TestProgram
 
 ```
 
-# namespace（名前空間）、class（型）
-* C# は、とにかく名前をつけて、名前のあるものに対して命令を下していく感じ。プログラム自体にも名前を付けなければならい。(1)-(3) に共通してある namespace のところにプログラムの名前が書いてある。
+* 実行時の動作の流れ
 
-* (1)-(3) をまとめて、以下のように書いても同じ。下の例では TestProgram という名前を付けているけど、名前を変えたければいつでも変更していい。ただし、名前は統一しておくこと。（昨日のコードでは、ファイルによってプログラムの名前が異なっていたからビルドに失敗した感じ。）
-```
-namespace TestProgram
-{
-	static class Program
-	{
-		[STAThread]
-		static void Main()
-		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
-		}
-	}
-
-	public partial class Form1 : Form
-	{
-		public Form1()
-		{
-			InitializeComponent();
-		}
-	}
-
-	partial class Form1
-	{
-		private System.ComponentModel.IContainer components = null;
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
-		#region Windows フォーム デザイナーで生成されたコード
-
-		private void InitializeComponent()
-		{
-			this.components = new System.ComponentModel.Container();
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Text = "Form1";
-		}
-
-		#endregion
-	}
-}
-```
-
-* C# のプログラムは、全て部品ごとに分割されて設計される。C のように独立した関数はない。関数は、何かの部品の中に存在するという形になる。
-
-　以下の例では、p, q, r という３つの整数を持つ class（＝型）をつくる。
-```
-class Test
-{
-	int p;
-	int q;
-	int r;
-}
-```
-
-　で、Test の型を持つ変数 test を作って、p に 1 を代入してみる。
-```
-class Test
-{
-	int p;
-	int q;
-	int r;
-}
-
-Test test;
-test.p = 1;
-```
-
-　考え方は上の例で正しいけれど、エラーが２つあってコンパイルできない。（C と感覚が異なるところ、、、）
-
-* エラーの理由その１
-```
-　C# では、「Test test;」と書くと、「test」は「Test」を指す名前として使うよ、という意味にしかならない。
-```
-　「名前を決めただけ」で、数字を３つ記憶するメモリ空間は確保されない（なんでやねん、って感じだけど、後々この考え方も便利となる）。test という名前を決めただけで、p を保存するメモリがないため、「test.p = 1」が実行できない。
-
-　で、test という名前で、実際に３つの数字を記憶させたりしたい場合は、new を使ってメモリを確保する。以下のどちらの書き方もＯＫ。
-```
-Test test;
-test = new Test();  // () の意味は後ほど。
-```
-または、
-```
-Test test = new Test();
-```
-（参考）昨日のコードは以下のような感じになってたから、エラーが出てた。
-```
-TextBox text_box;
-text_box.Text = "テスト";  // ここでエラーが出る。名前だけ決めて、"テスト"という文字を保存するメモリが確保されていないため。
-```
-以下のようにすれば、エラーにならない。
-```
-TextBox text_box = new TextBox();
-text_box.Text = "テスト";
-```
+1. (ア) の static void Main() からプログラムが開始される。
 
 
-* エラーの理由その２
 
-　class は、自分に所属している変数を扱う関数（＝メソッド）を持つことができる。
-```
-class Test
-{
-	int p;
-	int q;
-	int r;
-
-	void Add()
-	{
-		r = p + q;
-	}
-}
-```
-
-　上記の例で、 
-```
-Test test = new Test();
-test.Add();
-```
- とすると、test.r = test.p + test.q が実行されるはず。
-
-　しかし、class は **「自分の中に含まれているものを、外に見せない」** という性質を持っているため、p とか q とか rとか Add() というのがあるのは見えているけど、test に Add() をさせるために test.Add() としてもエラーになる。
-
-　上のままでは、test に含まれている Add() を見せないことにしているので、`test.Add()` がエラーになる感じ。
-
-　で、外から見てもいいよ、と許可を与える場合、public というキーワードを利用する。
-
-```
-class Test
-{
-	int p;
-	int q;
-	int r;
-
-	public void Add()
-	{
-		r = p + q;
-	}
-}
-
-Test test = new Test();
-test.Add();　　// これはＯＫ
-```
-　上のようにすると、Add() は見てもいいことになるから、test.Add() がエラーなく実行できるようになる。ただし、test.p = 1 というのはやっぱりエラーになる。以下のようにすれば、test.p = 1 が実行できるようになる。
-```
-class Test
-{
-	public int p;
-	int q;
-	int r;
-
-	public void Add()
-	{
-		r = p + q;
-	}
-}
-
-Test test = new Test();
-test.p = 1;　　// エラーなく実行可能
-test.q = 2;　　// これはエラー
-```
-
-# コンストラクタ
-　class から変数を生み出すとき、コンストラクタが実行される。コンストラクタは、 **「クラスの名前()」** という形で宣言される。
-```
-class Test
-{
-	Test()  // <- これがコンストラクタ
-	{
-	}
-
-	public int p;
-	int q;
-	int r;
-
-	public void Add()
-	{
-		r = p + q;
-	}
-}
-```
-　上の例では、コンストラクタの中身が空であるから、コンストラクタを書いても書かなくても同じ。
-```
-class Test
-{
-	Test()
-	{
-		p = 1;
-		q = 2;
-		r = 3;
-	}
-
-	public int p;
-	int q;
-	int r;
-
-	public void Add()
-	{
-		r = p + q;
-	}
-}
-```
-　上の例では、`Test test = new Test();` とすると、p に１、q に２、r に３が代入された test が生成される。けれど、コンストラクタを public にしていないため、Test() というコンストラクタを外に見せない状態になっている。だから、実際に利用するときには、以下のようにする。
-```
-class Test
-{
-	public Test()
-	{
-		p = 1;
-		q = 2;
-		r = 3;
-	}
-
-	public int p;
-	int q;
-	int r;
-
-	public void Add()
-	{
-		r = p + q;
-	}
-}
-
-Test test = new Test();
-```
-
-　コンストラクタには、以下のように引数を与えることができる。
-```
-class Test
-{
-	public Test()
-	{
-		p = 1;
-		q = 2;
-		r = 3;
-	}
-
-	public Test(int x)
-	{
-		p = x;
-		q = 2;
-		r = 3;
-	}
-
-	public Test(int y, int z)
-	{
-		p = 1;
-		q = y;
-		r = z;
-	}
-
-	public int p;
-	int q;
-	int r;
-
-	public void Add()
-	{
-		r = p + q;
-	}
-}
-```
-
-　この場合、`Test test = new Test(10, 11)` とすると、p = 1, q = 10, r = 11 と設定された test が出来上がる、という感じ。
 
 # テキストボックスを付けてみる
 
@@ -625,6 +368,282 @@ namespace TestProgram
 	}
 }
 ```
+
+
+# namespace（名前空間）、class（型）
+* C# は、とにかく名前をつけて、名前のあるものに対して命令を下していく感じ。プログラム自体にも名前を付けなければならい。(1)-(3) に共通してある namespace のところにプログラムの名前が書いてある。
+
+* (1)-(3) をまとめて、以下のように書いても同じ。下の例では TestProgram という名前を付けているけど、名前を変えたければいつでも変更していい。ただし、名前は統一しておくこと。（昨日のコードでは、ファイルによってプログラムの名前が異なっていたからビルドに失敗した感じ。）
+```
+namespace TestProgram
+{
+	static class Program
+	{
+		[STAThread]
+		static void Main()
+		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new Form1());
+		}
+	}
+
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+		}
+	}
+
+	partial class Form1
+	{
+		private System.ComponentModel.IContainer components = null;
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows フォーム デザイナーで生成されたコード
+
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Text = "Form1";
+		}
+
+		#endregion
+	}
+}
+```
+
+* C# のプログラムは、全て部品ごとに分割されて設計される。C のように独立した関数はない。関数は、何かの部品の中に存在するという形になる。
+
+　以下の例では、p, q, r という３つの整数を持つ class（＝型）をつくる。
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+}
+```
+
+　で、Test の型を持つ変数 test を作って、p に 1 を代入してみる。
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+}
+
+Test test;
+test.p = 1;
+```
+
+　考え方は上の例で正しいけれど、エラーが２つあってコンパイルできない。（C と感覚が異なるところ、、、）
+
+* エラーの理由その１
+```
+　C# では、「Test test;」と書くと、「test」は「Test」を指す名前として使うよ、という意味にしかならない。
+```
+　「名前を決めただけ」で、数字を３つ記憶するメモリ空間は確保されない（なんでやねん、って感じだけど、後々この考え方も便利となる）。test という名前を決めただけで、p を保存するメモリがないため、「test.p = 1」が実行できない。
+
+　で、test という名前で、実際に３つの数字を記憶させたりしたい場合は、new を使ってメモリを確保する。以下のどちらの書き方もＯＫ。
+```
+Test test;
+test = new Test();  // () の意味は後ほど。
+```
+または、
+```
+Test test = new Test();
+```
+（参考）昨日のコードは以下のような感じになってたから、エラーが出てた。
+```
+TextBox text_box;
+text_box.Text = "テスト";  // ここでエラーが出る。名前だけ決めて、"テスト"という文字を保存するメモリが確保されていないため。
+```
+以下のようにすれば、エラーにならない。
+```
+TextBox text_box = new TextBox();
+text_box.Text = "テスト";
+```
+
+
+* エラーの理由その２
+
+　class は、自分に所属している変数を扱う関数（＝メソッド）を持つことができる。
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+
+	void Add()
+	{
+		r = p + q;
+	}
+}
+```
+
+　上記の例で、 
+```
+Test test = new Test();
+test.Add();
+```
+ とすると、test.r = test.p + test.q が実行されるはず。
+
+　しかし、class は **「自分の中に含まれているものを、外に見せない」** という性質を持っているため、p とか q とか rとか Add() というのがあるのは見えているけど、test に Add() をさせるために test.Add() としてもエラーになる。
+
+　上のままでは、test に含まれている Add() を見せないことにしているので、`test.Add()` がエラーになる感じ。
+
+　で、外から見てもいいよ、と許可を与える場合、public というキーワードを利用する。
+
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+
+Test test = new Test();
+test.Add();　　// これはＯＫ
+```
+　上のようにすると、Add() は見てもいいことになるから、test.Add() がエラーなく実行できるようになる。ただし、test.p = 1 というのはやっぱりエラーになる。以下のようにすれば、test.p = 1 が実行できるようになる。
+```
+class Test
+{
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+
+Test test = new Test();
+test.p = 1;　　// エラーなく実行可能
+test.q = 2;　　// これはエラー
+```
+
+# コンストラクタ
+　class から変数を生み出すとき、コンストラクタが実行される。コンストラクタは、 **「クラスの名前()」** という形で宣言される。
+```
+class Test
+{
+	Test()  // <- これがコンストラクタ
+	{
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+　上の例では、コンストラクタの中身が空であるから、コンストラクタを書いても書かなくても同じ。
+```
+class Test
+{
+	Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+　上の例では、`Test test = new Test();` とすると、p に１、q に２、r に３が代入された test が生成される。けれど、コンストラクタを public にしていないため、Test() というコンストラクタを外に見せない状態になっている。だから、実際に利用するときには、以下のようにする。
+```
+class Test
+{
+	public Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+
+Test test = new Test();
+```
+
+　コンストラクタには、以下のように引数を与えることができる。
+```
+class Test
+{
+	public Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public Test(int x)
+	{
+		p = x;
+		q = 2;
+		r = 3;
+	}
+
+	public Test(int y, int z)
+	{
+		p = 1;
+		q = y;
+		r = z;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+
+　この場合、`Test test = new Test(10, 11)` とすると、p = 1, q = 10, r = 11 と設定された test が出来上がる、という感じ。
 
 # class の定義の書き方
 　class の宣言でできるのは、「名前を決める」or「名前を決めて、メモリを確保する」だけ。以下のような書き方はエラー。
