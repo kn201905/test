@@ -105,13 +105,13 @@ Application.SetCompatibleTextRenderingDefault(false);
       * `new Form1()` で、Form1 を新規作成する。Form1 の後ろの () は、作成するときに追加の指示を出したい時に利用する。今は追加の指示は出さないので () の中身は空。
    * フォーム ≒ アプリケーションウィンドウ
    * Form1 という名前を変えたければ、(イ)、(ウ) の Form1 と書いてあるところを書き換えればＯＫ。
-
+---
 * `new Form1()` について
 
    * `new A()` が実行されると、プログラムのどこかに書いてある `A()` が実行される。
    * `new Form1()` により、(イ) の `public Form1()` が実行される。（public の意味は後で）
    * `Form1()` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
-
+---
 * (イ) の `public partial class Form1 : Form` について
 
 　public、partial、: Form については後で分かる。ここでは「class」について理解しておく。
