@@ -1,0 +1,435 @@
+
+---
+---
+以下は書きかけ事項
+---
+
+# class（型）
+
+* C# のプログラムは、全て部品ごとに分割して設計していく。
+
+　例として、３つの整数を記憶できる class（＝型）をつくってみる。
+
+　`int` は、「-2,147,483,648 ～ 2,147,483,647」の範囲の整数を記憶できるものを表す。小数を記憶させたい場合であれば、int ではなく float などを用いる。
+
+>【重要】int は、new をしなくても利用可能である。大体のものは new が必要で、new が必要でないものは int などの数字を記憶するもの、と現時点では覚えておけば良い。  
+>（正確に言うと、new が必要でないのは、「値型」と言われる変数を生成するときである。）
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+}
+```
+
+　で、Test の型を持つ変数 test を作って、p に 1 を代入してみる。
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+}
+
+Test test;
+test.p = 1;
+```
+
+　考え方は上の例で正しいけれど、エラーが２つあってコンパイルできない。
+
+* エラーの理由その１
+```
+　C# では、「Test test;」と書くと、「test」は「Test」を指す名前として使うよ、という意味にしかならない。
+```
+　「名前を決めただけ」で、実際に利用できるものが作られていない。次のように、実際に利用できるものを new で生成する必要がある。
+```
+Test test;
+test = new Test();
+```
+または、
+```
+Test test = new Test();
+```
+
+* エラーの理由その２
+
+　class は、自分に所属している変数を扱う関数（＝メソッド）を持つことができる。
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+
+	void Add()
+	{
+		r = p + q;
+	}
+}
+```
+
+　上記の例で、 
+```
+Test test = new Test();
+test.Add();
+```
+ とすると、test.r = test.p + test.q が実行されるはず。
+
+　しかし、class は **「自分の中に含まれているものを、外に見せない」** という性質を持っているため、p とか q とか rとか Add() というのがあるのは見えているけど、test に Add() をさせるために test.Add() としてもエラーになる。
+
+　上のままでは、test に含まれている Add() を見せないことにしているので、`test.Add()` がエラーになる感じ。
+
+　で、外から見てもいいよ、と許可を与える場合、public というキーワードを利用する。
+
+```
+class Test
+{
+	int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+
+Test test = new Test();
+test.Add();　　// これはＯＫ
+```
+　上のようにすると、Add() は見てもいいことになるから、test.Add() がエラーなく実行できるようになる。ただし、test.p = 1 というのはやっぱりエラーになる。以下のようにすれば、test.p = 1 が実行できるようになる。
+```
+class Test
+{
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+
+Test test = new Test();
+test.p = 1;　　// エラーなく実行可能
+test.q = 2;　　// これはエラー
+```
+
+# コンストラクタ
+　class から変数を生み出すとき、コンストラクタが実行される。コンストラクタは、 **「クラスの名前()」** という形で宣言される。
+```
+class Test
+{
+	Test()  // <- これがコンストラクタ
+	{
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+　上の例では、コンストラクタの中身が空であるから、コンストラクタを書いても書かなくても同じ。
+```
+class Test
+{
+	Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+　上の例では、`Test test = new Test();` とすると、p に１、q に２、r に３が代入された test が生成される。けれど、コンストラクタを public にしていないため、Test() というコンストラクタを外に見せない状態になっている。だから、実際に利用するときには、以下のようにする。
+```
+class Test
+{
+	public Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+
+Test test = new Test();
+```
+
+　コンストラクタには、以下のように引数を与えることができる。
+```
+class Test
+{
+	public Test()
+	{
+		p = 1;
+		q = 2;
+		r = 3;
+	}
+
+	public Test(int x)
+	{
+		p = x;
+		q = 2;
+		r = 3;
+	}
+
+	public Test(int y, int z)
+	{
+		p = 1;
+		q = y;
+		r = z;
+	}
+
+	public int p;
+	int q;
+	int r;
+
+	public void Add()
+	{
+		r = p + q;
+	}
+}
+```
+
+　この場合、`Test test = new Test(10, 11)` とすると、p = 1, q = 10, r = 11 と設定された test が出来上がる、という感じ。
+
+# class の定義の書き方
+　class の宣言でできるのは、「名前を決める」or「名前を決めて、メモリを確保する」だけ。以下のような書き方はエラー。
+```
+エラーとなる書き方
+
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	text_box.Size = new Size(100, 100);
+	text_box.Multiline = true;
+	this.Controls.Add(text_box);
+
+	public Form1()
+	{
+		InitializeComponent();
+	}
+}
+```
+
+　class Form1 { } というのは、Form1 が **「部品として何を持っているか」** を列挙する構文のため。
+```
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	Button btn = new Button();
+
+	public Form1()
+	{
+		InitializeComponent();
+
+		text_box.Size = new Size(100, 100);
+		text_box.Multiline = true;
+		this.Controls.Add(text_box);
+
+		btn.Text = "ボタン";
+		this.Controls.Add(btn);
+	}
+}
+```
+　上のようにすると、Form1 は、以下の **「３つの部品を持つ」** という意味になる。
+
+* text_box という名前の TextBox
+* btn という名前の Button 
+* 引数なしのコンストラクタ（Form1() のこと）
+
+<BR>
+
+# partial の意味
+　class を設計する際、多くの部品が必要になることがある。その場合、partial を付けて class の設計を分割することができる。
+
+　以下の２つは同じ意味。
+```
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	Button btn = new Button();
+
+	public Form1()
+	{
+		InitializeComponent();
+
+		text_box.Size = new Size(100, 100);
+		text_box.Multiline = true;
+		this.Controls.Add(text_box);
+
+		btn.Text = "ボタン";
+		this.Controls.Add(btn);
+	}
+}
+```
+or
+```
+public partial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+
+	public Form1()
+	{
+		InitializeComponent();
+
+		text_box.Size = new Size(100, 100);
+		text_box.Multiline = true;
+		this.Controls.Add(text_box);
+
+		btn.Text = "ボタン";
+		this.Controls.Add(btn);
+	}
+}
+
+public partial class Form1
+{
+	Button btn = new Button();  // btn の定義だけを、別に書くこともできる。それだけの話
+}
+```
+<BR>
+
+* まだ `「: Form」` の意味を説明してないけど、partial で class を分割する場合、「: Form」はどこか１ヶ所に書いてあれば良い、ということになっている。また、複数に書いても良い。
+
+　以下は、全部同じ意味となる。
+```
+class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+	Button btn = new Button();
+}
+```
+or
+```
+pattial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+}
+
+pattial class Form1
+{
+	Button btn = new Button();
+}
+```
+or
+```
+pattial class Form1
+{
+	TextBox text_box = new TextBox();
+}
+
+pattial class Form1 : Form
+{
+	Button btn = new Button();
+}
+```
+or
+```
+pattial class Form1 : Form
+{
+	TextBox text_box = new TextBox();
+}
+
+pattial class Form1 : Form
+{
+	Button btn = new Button();
+}
+```
+
+# using
+　C# には、いろいろな部品が利用できるように準備されている。ウィンドウとか、ボタンとか、テキストボックスとか。。
+
+　それで、頭の中を整理しやすいように、名前空間（最初に紹介した namespace）で細かく区切りを入れている。
+
+　実は、今まで使っていた Button や TextBox は、System の中の Windows の中の Forms という区切りの中にある。
+
+　Button や TextBox を作りたい場合、その細かい区切りの中にある Button や TextBox を作るよ、と指示をするために、正確に書くと以下のようになる。
+```
+System.Windows.Forms.Button btn = new System.Windows.Forms.Button();
+System.Windows.Forms.TextBox text_box = new System.Windows.Forms.TextBox();
+```
+　当然ながら上のように何度も細かい区切りを書くのが面倒なので、using という命令を利用する。
+```
+using System.Windows.Forms;
+
+Button btn = new Button();
+TextBox text_box = new TextBox();
+```
+　using を書いておくと、Button などの前に「System.Windows.Forms」という言葉が自動的に補完されるようになる。
+
+　Form1.Designer.cs では using が使われていないため、Button などを作るときに長い名前になっている、ということを知っておけば良いと思う。
+
+
+# 最後に１つ
+　以上のことが分かれば、昨日のコードは動作するように書き直せると思う。ただ、イベントハンドラの書き方が２通りあるため、混乱するかも。以下の２つの書き方は同じもの、って知っておけばＯＫ（★ の部分が異なるだけ）。詳しい意味については、また後ほど、、、
+
+* (1)
+```
+class Form1 : Form
+{
+	Button btn = new Button()
+
+	public Form1()
+	{
+		btn.Click += OnClick_Button;　　// (★)
+	}
+
+	void OnClick_Button(object sender, EventArgs e)
+	{
+	}
+}
+```
+* (2)
+```
+class Form1 : Form
+{
+	Button btn = new Button()
+
+	public Form1()
+	{
+		btn.Click += new System.EventHandler(OnClick_Button);　　// ((★)
+	}
+
+	void OnClick_Button(object sender, EventArgs e)
+	{
+	}
+}
+```
+
+　(1) は、C# 2.0 以降の書き方。(2) は C# 1.1 までの古い書き方。今は新しい書き方である (1) で書けばよい。
+
+<BR>
+
+* (2) の書き方を紹介した理由
+
+　C# コンパイラに付属しているフォームデザイナ（ボタンをドラッグ＆ドロップで貼り付けたりするやつ）を利用してフォームを作成すると、イベントハンドラが (2) の書き方で生成される。
+
+　new System.EventHandler() を見て、なんだこれは？？とならないでもらえればＯＫ。
+
+　new System.EventHandler() は書かなくても正しく動作する、っていうことを知っておいてもらえればＯＫ。
