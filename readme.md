@@ -184,7 +184,7 @@ TextBox text_box = new TextBox();
 
 * この状態でビルドして実行すると、テキストボックスが張り付いたウィンドウが表示される。
 　
----
+
 # テキストボックスの位置を変える
 　TextBox の位置を変える場合、Location を変更する。以下のようなコードを追加して実験。
 
@@ -210,8 +210,7 @@ namespace TestProgram
 		{
 			InitializeComponent();
 
-			TextBox text_box;
-			text_box = new TextBox();
+			TextBox text_box = new TextBox();
 			text_box.Size = new Size(100, 100);
 			text_box.Multiline = true;
 			text_box.Location = new Point(50, 50);
@@ -297,16 +296,22 @@ namespace TestProgram
 		void OnClick_Button(object sender, EventArgs e)
 		{
 			text_box.AppendText("Hello.\r\n");  // \r\n は改行の意味
-			//「text_box が見つからない」というエラーになる
 		}
 	}
 }
 ```
 
-* エラーとなる理由
-　C と同じで、変数などに付けた名前は { } の内側からしか見ることができないため。
+上記のコードでは、`text_box.AppendText("Hello.\r\n");` を実行しようとするときに、「`text_box` が指しているものを見つけられない」というエラーが発生する。
 
-　{ } の外側に書かれた名前は見ることができるため、以下のようにすればよい。
+
+* エラーとなる理由
+
+　変数などに付けた名前の有効範囲は { } の内側に制限されるため。
+
+* エラーの解消法
+
+　名前の有効範囲を広めるために、{ } の外側で名前を宣言する。
+
 ```
 namespace TestProgram
 {
@@ -377,6 +382,10 @@ namespace TestProgram
 }
 ```
 
+---
+---
+以下は書きかけ事項
+---
 
 # namespace（名前空間）、class（型）
 * C# は、とにかく名前をつけて、名前のあるものに対して命令を下していく感じ。プログラム自体にも名前を付けなければならい。(1)-(3) に共通してある namespace のところにプログラムの名前が書いてある。
