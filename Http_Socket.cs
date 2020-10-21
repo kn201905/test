@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 
@@ -45,7 +44,8 @@ namespace http_test
 		private static string SocketSendReceive(string server, int port)
 		{
 			string request = "GET / HTTP/1.1\r\nHost: " + server +
-			"\r\nConnection: Close\r\n\r\n";
+					"\r\nConnection: keep-alive\r\n\r\n";
+//					"\r\nConnection: Close\r\n\r\n";
 			Byte[] bytesSent = Encoding.ASCII.GetBytes(request);
 			Byte[] bytesReceived = new Byte[256];
 			string page = "";
@@ -67,7 +67,7 @@ namespace http_test
 				do
 				{
 					bytes = s.Receive(bytesReceived, bytesReceived.Length, 0);
-					page = page + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
+					page = page + Encoding.UTF8.GetString(bytesReceived, 0, bytes);
 				}
 				while (bytes > 0);
 			}
