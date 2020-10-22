@@ -111,7 +111,7 @@ Application.SetCompatibleTextRenderingDefault(false);
 
    * `new Form1()` が実行されると、ウィンドウが生成され、(イ) の `public Form1() { ... }` が実行される。（public の意味は後で）
 
-   * `Form1()` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
+   * `Form1() { ... }` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
 
    * `InitializeComponent()` の中身に関しては、後で分かるようになればよい。現時点では、`new Form1()` により、(イ) の `public Form1() { ... }` が実行されることを理解するだけで十分。
 <BR>
