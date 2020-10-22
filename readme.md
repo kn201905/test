@@ -114,8 +114,8 @@ Application.SetCompatibleTextRenderingDefault(false);
    * `Form1()` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
 
    * `InitializeComponent()` の中身に関しては、後で分かるようになればよい。現時点では、`new Form1()` により、(イ) の `public Form1() { ... }` が実行されることを理解するだけで十分。
-
 <BR>
+
 > **(イ) の `public partial class Form1 : Form { ... }` について**
 >
 >　public、partial、: Form については後で分かる。ここでは「class」について理解しておく。
