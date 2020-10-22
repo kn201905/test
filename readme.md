@@ -107,12 +107,14 @@ Application.SetCompatibleTextRenderingDefault(false);
 
    * `Form1()` の () は、new を実行するときに追加で指示を出したい場合に利用する。
 
-* `new Form1()` について
+* `new Form1()` について補足
 
-   * `new A()` が実行されると、プログラムのどこかに書いてある `A()` が実行される。
-   * `new Form1()` により、(イ) の `public Form1()` が実行される。（public の意味は後で）
+   * `new Form1()` が実行されると、まずウィンドウが生成され、(イ) の `public Form1() { ... }` が実行される。（public の意味は後で）
+
    * `Form1()` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
-   * `InitializeComponent()` の中身に関しては、後で分かるようになればよい。
+
+   * `InitializeComponent()` の中身に関しては、後で分かるようになればよい。現時点では、`new Form1()` により、(イ) の `public Form1() { ... }` が実行されることを理解するだけで十分。
+
 
 > **(イ) の `public partial class Form1 : Form { ... }` について**
 >
@@ -123,6 +125,7 @@ Application.SetCompatibleTextRenderingDefault(false);
 >　`class Form1 { Form1() { ... } }` で、Form1 というものには「`Form1()` という部品がある」と分かる。
 >
 >　`new Form1()` を実行すると、コンピュータは Form1 の class の内部を調べて、その中にある `Form1()` を実行する、という流れになる。
+
 
 * `Application.Run( ... )` とすると、`...` の部分のものが実行機能を持つ場合、実行が開始される。Form1 は実行機能を持つ class なので、`new Form1()` で作成されたものの実行が開始される。
 
