@@ -105,7 +105,7 @@ Application.SetCompatibleTextRenderingDefault(false);
 
    * フォーム ≒ アプリケーションウィンドウ
 
-   * `Form1()` の () は、new を実行するときに追加で指示を出したい場合に利用する。
+   * `Form1()` の () の部分は、new を実行するときに追加で指示を出したい場合に利用される。
 
 * `new Form1()` について補足
 
