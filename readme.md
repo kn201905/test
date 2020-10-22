@@ -142,9 +142,9 @@ Application.SetCompatibleTextRenderingDefault(false);
 
    * (例) `Size box_size;`　box_size は、`Size` というクラスの部品を表す名前。
 
-* `「部品の名前」＝ new「class名」` で、実際に部品を生成する。
+* `「部品の名前」＝ new「class名」;` で、実際に部品を生成する。
 
-   * (例) `box_size = new Size(100, 100);` で、横 100 pixel、縦 100 pixel の大きさの `Size` オブジェクト（＝もの）を作り、それを `box_size` に割り当てる。今回は、「横 100 pixel、縦 100 pixel」という情報を追加するために、() の中に情報を追加している。
+   * (例) `box_size = new Size(100, 100);` で、横 100 pixel、縦 100 pixel の大きさの `Size` オブジェクト（＝もの）を作り、それを `box_size` に割り当てる。「横 100 pixel、縦 100 pixel」という情報を追加するために、() の中に情報を追加している。
 
 ```
 namespace TestProgram
