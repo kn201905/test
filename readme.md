@@ -114,9 +114,14 @@ Application.SetCompatibleTextRenderingDefault(false);
 >
 >　`class A { ... }` とすると、`...` の部分が「A を構成する部品」という意味になる。「class」は、１つのまとまったものを表す。学校での「クラス」と同じ意味。
 >
->　`class Form1 { Form1() { ... } }` で、Form1 という class には「`Form1()` という関数がある」と分かる。
+>　以下のように書くと、`Form1` というクラスの中に、`Form1()` という関数があるという意味になる。
 > ```
 > class Form1
+> {
+>	Form1()
+>	{
+>	}
+> }
 > ```
 
 <BR>
