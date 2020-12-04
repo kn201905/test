@@ -103,8 +103,6 @@ Application.SetCompatibleTextRenderingDefault(false);
 
    * `new Form1()` により、`Form1` というオブジェクト（＝もの）が作成される。今の場合、`Form1` はウィンドウを表しているので、この命令によりウィンドウが表示される。
 
-   * フォーム ≒ ウィンドウ
-
    * `Form1()` の () の部分は、new を実行するときに追加で指示を出したい場合に利用される。
 
 * `new Form1()` について補足
