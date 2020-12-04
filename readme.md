@@ -101,15 +101,9 @@ Application.SetCompatibleTextRenderingDefault(false);
 
 * `Application.Run(new Form1());`  の `new Form1()` について
 
-   * `new Form1()` により、`Form1` というオブジェクト（＝もの）が作成される。今の場合、`Form1` はウィンドウを表しているので、この命令によりウィンドウが表示される。
+   * `new Form1()` は、`Form1` を生成して、(イ) の `public Form1() { ... }` を実行する命令。（public の意味は後で）。`Form1` はウィンドウを表しているので、この命令によりウィンドウが表示される。
 
-   * `Form1()` の () の部分は、new を実行するときに追加で指示を出したい場合に利用される。
-
-* `new Form1()` について補足
-
-   * `new Form1()` が実行されると、ウィンドウが生成され、(イ) の `public Form1() { ... }` が実行される。（public の意味は後で）
-
-   * `Form1() { ... }` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
+   * (イ) の `Form1() { ... }` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
 
    * `InitializeComponent()` の中身に関しては、後で分かるようになればよい。現時点では、`new Form1()` により、(イ) の `public Form1() { ... }` が実行されることを理解するだけで十分。
 <BR>
