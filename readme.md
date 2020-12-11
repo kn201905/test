@@ -98,7 +98,7 @@ namespace TestProgram
 
 # 実行時の動作の流れ
 
-* (ア) の static void Main() からプログラムが開始される。
+* (ア) の static void Main() からプログラムが開始される。これは、C# の言語の規約。
 
 * 以下の２つは、描画関連の内部スイッチの変更。詳細は気にしなくて良いと思う。
 ```
@@ -106,9 +106,9 @@ Application.EnableVisualStyles();
 Application.SetCompatibleTextRenderingDefault(false);
 ```
 
-* `Application.Run(new Form1());`  の `new Form1()` について
+* `Application.Run(new Form1());` について
 
-   * `new Form1()` は、`Form1` を生成して、(イ) の `public Form1() { ... }` を実行する命令。（public の意味は後で）。`Form1` はウィンドウを表しているので、この命令によりウィンドウが表示される。
+   * `Form1` を生成（＝new）して、生成したものを `Application.Run()` に渡している。`Form1` はウィンドウを表していて、`Application.Run` は、アプリの実行を行う命令であるため、この命令によりウィンドウが表示され、アプリの実行が開始される。実際には、(イ) の `public Form1()` が実行されて、その結果が `Application.Run` で実行されるイメージを持つと良い。
 
    * (イ) の `Form1() { ... }` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
 
