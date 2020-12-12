@@ -397,3 +397,6 @@ namespace TestProgram
 	}
 }
 ```
+
+---
+## md.02 に続く
