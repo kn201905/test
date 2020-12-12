@@ -108,11 +108,11 @@ Application.SetCompatibleTextRenderingDefault(false);
 
 * `Application.Run(new Form1());` について
 
-   * `Form1` を生成（＝new）して、生成したものを `Application.Run()` に渡している。`Form1` はウィンドウを表していて、`Application.Run` は、アプリの実行を行う命令であるため、この命令によりウィンドウが表示され、アプリの実行が開始される。実際には、(イ) の `public Form1()` が実行されて、その結果が `Application.Run` で実行されるイメージを持つと良い。
+   * `Form1` を生成（＝new）して、生成したものを `Application.Run()` に渡している。`Form1` はウィンドウを表していて、`Application.Run` はアプリの実行を行う命令であるため、この命令によりウィンドウが表示され、アプリの実行が開始される。
 
-   * (イ) の `Form1() { ... }` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。
-
-   * `InitializeComponent()` の中身に関しては、後で分かるようになればよい。現時点では、`new Form1()` により、(イ) の `public Form1() { ... }` が実行されることを理解するだけで十分。
+   * `Form1` が生成されるとき、(イ) の `public Form1()` が実行される。（この仕組については先の方でもう少し詳しく説明する。現段階では、何かを生成するときには、それに付随して実行されるものがある、という理解でＯＫ。）
+   
+   * (イ) の `Form1() { ... }` の中に、`InitializeComponent()` と書いてあるので、`InitializeComponent()` の実行に移る。`InitializeComponent()` の中身に関しては、後で分かるようになればよい。
 <BR>
 
 > **(イ) の `public partial class Form1 : Form { ... }` について**
