@@ -196,7 +196,7 @@ TextBox text_box = new TextBox();
 
    * `this.Controls.Add(...)` は、`Form1` の `Controls`（＝テキストボックスやボタンなどのコントロールの集合）に、`...` を `Add` せよ、という意味。
 
-   * `this.Controls.Add(text_box);` ＝ `Form1` の `Controls` に、`text_box` を `Add` する
+   * `this.Controls.Add(text_box);` ＝ 「`Form1` の `Controls` に、`text_box` を `Add` する」
 
 * この状態でビルドして実行すると、テキストボックスが張り付いたウィンドウが表示される。
 　
