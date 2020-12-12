@@ -139,8 +139,6 @@ Application.SetCompatibleTextRenderingDefault(false);
 
 <BR>
 
-* `Application.Run( ... )` とすると、`...` の部分の実行が開始される。今の場合、`new Form1()` で作成されたウィンドウの実行が開始される。
-
 # テキストボックスを付けてみる
 
 　(イ) のファイルの、`Form1()` にコードを追加してみる。何らかの部品を作る場合は、次のようにする。
