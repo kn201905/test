@@ -5,6 +5,13 @@
 # ネットワーク設定
 ・ブリッジ接続 -> 必要があれば /etc/netplan の設定の変更
 
+# SSH で接続
+```
+$ sudo su -
+# apt update
+# apt upgrade
+```
+
 # Guest Additions のインストール（共有フォルダを利用するため）
 ・VM ウィンドウのメニュー -> デバイス -> Guest Additions CD イメージの挿入
 ```
@@ -75,4 +82,22 @@ echo 'iptables の設定が正しく処理されました'
 
 * 念のために、v6 アドレスがローカルしか振られていないことを確認。必要があれば、ip6tables を設定
 
+# node.js をインストール
+```
+まず、n package を動かすために、古いものでいいので nodejs をインストールする
+# apt install nodejs npm
+# npm install n -g
+
+安定バージョンをインストール（新しい nodejs は、/usr/local/bin にインストールされる）
+# n stable
+
+新しい nodejs がインストールされたため、古いものは削除
+# apt purge -y nodejs npm
+
+環境変数 node を更新するため、シェルを再起動
+# exec $SHELL -l
+
+バージョン確認
+# node -v
+```
 
