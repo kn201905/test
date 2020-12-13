@@ -101,3 +101,38 @@ echo 'iptables の設定が正しく処理されました'
 # node -v
 ```
 
+# node お試し
+* httpserver.js
+```
+httpserver
+'use strict';
+
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer();
+const index_html = fs.readFileSync('index.html', 'utf-8');
+
+server.on('request', (req, res) => {
+	res.writeHead(200, {'Content-Type' : 'text/html'});
+	res.write(index_html);
+	res.end();
+});
+
+server.listen(80);
+```
+
+* index.html
+```
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>テスト</title>
+</head>
+
+<body>
+<H1>Hello!</H1>
+</body>
+</html>
+```
