@@ -104,7 +104,6 @@ echo 'iptables の設定が正しく処理されました'
 # node お試し
 * httpserver.js
 ```
-httpserver
 'use strict';
 
 const http = require('http');
