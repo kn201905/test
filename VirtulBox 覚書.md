@@ -18,10 +18,10 @@ $ sudo su -
 # mkdir /mnt/cdrom
 # mount -t iso9660 /dev/cdrom /mnt/cdrom
 
-Guest Additions のインストール
+ドライバをメイクするための準備
 # apt install -y gcc make perl linux-headers-generic
 
-Guest Additionsをビルドしてインストール
+Guest Additions をビルドしてインストール
 # cd /mnt/cdrom
 # ./VBoxLinuxAdditions.run
 # reboot
