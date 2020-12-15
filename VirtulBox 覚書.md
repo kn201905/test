@@ -131,7 +131,7 @@ server.listen(80);
 </head>
 
 <body>
-<H1>Hello!</H1>
+<h1>Hello!</h1>
 </body>
 </html>
 ```
