@@ -1,8 +1,9 @@
 01234 
  56789
 
-ABCDE  
-fghijklmn
+ABCDE
+前行は半角空白なしfghijklmn    
+前行は半角空白４つあり
 
 テスト文章
 
