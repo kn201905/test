@@ -45,7 +45,7 @@ namespace TestProgram
 }
 ```
 
-(イ) Form1.cs
+(イ) Form1.cs（ソリューションエクスプローラで Form1.cs を右クリックして、「コードの表示」を選択する）
 ```
 namespace TestProgram
 {
