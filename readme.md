@@ -405,4 +405,4 @@ namespace TestProgram
 
 ---
 # 02.md に続く
-16進法の説明についてはhttps://github.com/kn201905/test/blob/master/hexadecimal.md　にて！
+16進法の説明については→https://github.com/kn201905/test/blob/master/hexadecimal.md　
