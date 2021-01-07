@@ -115,8 +115,8 @@ const val_async = (async () => {
 	return val_promise;
 })();
 
-console.log(val_async);
 console.log('--- D ---');
+console.log(val_async);
 
 val_async.then((val) => {
 	console.log('--- E ---');
