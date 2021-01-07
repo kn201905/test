@@ -67,3 +67,20 @@ function StartListening(f_cb) {
 	}, 2000);
 }
 ```
+
+## 参考１
+```
+(() => {
+	console.log('--- A ---');
+
+	(async () => {
+		console.log('--- B ---');
+		await new Promise(f => f(null));
+		console.log('--- C ---');
+		return val_promise;
+	})();
+
+	console.log('--- D ---');
+})();
+
+```
