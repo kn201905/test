@@ -2,7 +2,7 @@
 
 ## よくあるパターン
 
-### (A) Promise（Chrome では 2014年に実装。V8 3.2）によるパターン
+### (A) Promise による実装（Chrome では 2014年に実装。V8 3.2）
 
 ```
 new Promise(resolve => {
@@ -18,7 +18,7 @@ new Promise(resolve => {
 console.log('--- C ---');
 ```
 
-### (B) async（Chrome では 2016年に実装。V8 5.5）によるパターン
+### (B) async による実装（Chrome では 2016年に実装。V8 5.5）
 ```
 const WaitClientAsync = async () => {
 	await new Promise(resolve => {
@@ -38,7 +38,7 @@ const WaitClientAsync = async () => {
 console.log('--- C ---');
 ```
 
-### (C) 昔ながらのパターン
+### (C) 昔ながらの実装（いつの時代でも使えた方法）
 ```
 console.log('--- X ---');
 WaitClient(OnConnect);
