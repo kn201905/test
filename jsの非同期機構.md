@@ -51,7 +51,7 @@ async function WaitForClientAsync() {
 ### (C) 昔ながらの実装（いつの時代でも使えた方法）
 ```
 console.log('--- X ---');
-ConnectToClient(OnConnect);
+StartListening(OnConnect);
 console.log('--- Y ---');
 
 function OnConnect(msg) {
@@ -61,7 +61,7 @@ function OnConnect(msg) {
 
 // --------------
 
-function ConnectToClient(f_cb) {
+function StartListening(f_cb) {
 	setTimeout(() => {
 		f_cb('connected');
 	}, 2000);
