@@ -5,9 +5,9 @@
 ### (A) Promise による実装（Chrome では 2014年に実装。V8 3.2）
 
 ```
-new Promise(resolve => {
+new Promise(f => {  // あえて f と書いている（普通は resolve と書くところ）
 	console.log('--- A ---');
-	WaitClient(resolve);
+	WaitClient(f);
 	console.log('--- B ---');
 })
 .then((msg) => {
