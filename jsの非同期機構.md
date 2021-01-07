@@ -144,11 +144,11 @@ console.log('--- H ---');
 ```
 (async () => {
 	console.log('--- A ---');
-	const obj_promise = new Promise(resolve => {
+	const obj_promise = new Promise(f => {  // ここの f には、Promise が resolver を代入する。だから、一般的には resolve と書く。
 		console.log('--- B ---');
 		setTimeout(() => {
 			console.log('--- C ---');	
-			resolve('resolved');
+			f('resolved');
 			console.log('--- D ---');
 		}, 2000);
 	})
@@ -171,11 +171,14 @@ console.log('--- H ---');
 	});
 	
 	console.log('--- I ---');
+	console.log(val_then_1);
 	console.log(val_then_2);
+	console.log(obj_promise);
 
 	const val_promise = await obj_promise;
+	console.log('--- J ---');
 	console.log(val_promise);
 })();
 
-console.log('--- J ---');
+console.log('--- K ---');
 ```
