@@ -1,8 +1,8 @@
 # js の非同期機構
 
-## よくあるパターン
+## 参考１
 
-### (A) Promise による実装（Chrome では 2014年に実装。V8 3.2）
+### (ア) Promise による実装（Chrome では 2014年に実装。V8 3.2）
 
 ```
 new Promise(f => {  // 敢えて f と書いている（普通は resolve と書くところ）
@@ -26,7 +26,7 @@ function WaitForClient(f_cb) {
 }
 ```
 
-### (B) async による実装（Chrome では 2016年に実装。V8 5.5）
+### (イ) async による実装（Chrome では 2016年に実装。V8 5.5）
 ```
 (async () => {
 	console.log('--- A ---');
@@ -48,7 +48,7 @@ async function WaitForClientAsync() {
 }
 ```
 
-### (C) 昔ながらの実装（いつの時代でも使えた方法）
+### (ウ) 昔ながらの実装（いつの時代でも使えた方法）
 ```
 console.log('--- X ---');
 StartListening(OnConnect);
@@ -68,7 +68,8 @@ function StartListening(f_cb) {
 }
 ```
 
-## 参考１
+## 参考２
+### (カ)
 ```
 (() => {
 	console.log('--- A ---');
@@ -77,10 +78,23 @@ function StartListening(f_cb) {
 		console.log('--- B ---');
 		await new Promise(f => f(null));
 		console.log('--- C ---');
-		return val_promise;
 	})();
 
 	console.log('--- D ---');
 })();
+```
 
+### (キ)
+```
+(async () => {
+	console.log('--- A ---');
+
+	await (async () => {
+		console.log('--- B ---');
+		await new Promise(f => f(null));
+		console.log('--- C ---');
+	})();
+
+	console.log('--- D ---');
+})();
 ```
