@@ -99,3 +99,38 @@ js の実装法も、このあたりで変更があった可能性があるか�
 	console.log('--- D ---');
 })();
 ```
+
+## 参考３
+js や C# の実装では、以下のようなコードも書ける。ちょっとアホみたいなコードだけど、挙動を観察するにはいいと思う（ネットで探しても、こんなアホなコードは見かけないと思うw）。
+
+しかし、今デュラチャのチャットルームで動作させている「Ron_BAN」は、以下のコードの応用して動作している。
+Ron_BAN では、非同期に動作するタスクを、プライオリティに合わせて動的に実行順序を変更することを行っている。
+```
+console.log('--- A ---');
+
+const val_async = (async () => {
+	console.log('--- B ---');
+	const val_promise = await new Promise(f => f('resolved'));
+	console.log('--- C ---');
+	return val_promise;
+})();
+
+console.log(val_async);
+console.log('--- D ---');
+
+val_async.then((val) => {
+	console.log('--- E ---');
+	console.log(val)
+});
+
+(async () => {
+	console.log('--- F ---');
+	console.log(await val_async);
+	console.log('--- G ---');
+})();
+
+console.log('--- H ---');
+```
+
+## 参考４
+参考３ のコードを走らせると、js の async は Promise を返すものだと気付く。そうすると、以下のようなコードを走らせることもできるようになる。
