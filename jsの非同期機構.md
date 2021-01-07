@@ -1,6 +1,9 @@
+# js の非同期機構
+
 ## よくあるパターン
 
-### (A)
+### (A) Promise（Chrome では 2014年に実装。V8 3.2）によるパターン
+
 ```
 new Promise(resolve => {
 	console.log('--- A ---');
@@ -15,7 +18,7 @@ new Promise(resolve => {
 console.log('--- C ---');
 ```
 
-### (B)
+### (B) async（Chrome では 2016年に実装。V8 5.5）によるパターン
 ```
 const WaitClientAsync = async () => {
 	await new Promise(resolve => {
@@ -33,4 +36,16 @@ const WaitClientAsync = async () => {
 })();
 
 console.log('--- C ---');
+```
+
+### (C) 昔ながらのパターン
+```
+console.log('--- X ---');
+WaitClient(OnConnect);
+console.log('--- Y ---');
+
+function OnConnect(msg) {
+	console.log('--- msg ---');
+	console.log(msg);
+};
 ```
