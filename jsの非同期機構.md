@@ -5,7 +5,7 @@
 ### (A) Promise による実装（Chrome では 2014年に実装。V8 3.2）
 
 ```
-new Promise(f => {  // あえて f と書いている（普通は resolve と書くところ）
+new Promise(f => {  // 敢えて f と書いている（普通は resolve と書くところ）
 	console.log('--- A ---');
 	WaitClient(f);
 	console.log('--- B ---');
