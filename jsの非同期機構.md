@@ -2,7 +2,7 @@
 
 ## 参考１
 
-### (ア) Promise による実装（Chrome では 2014年に実装。V8 3.2）
+### (ア) Promise による実装（Chrome では Promise を 2014年に実装。V8 3.2）
 
 ```
 new Promise(f => {  // 敢えて f と書いている（普通は resolve と書くところ）
@@ -26,7 +26,7 @@ function WaitForClient(f_cb) {
 }
 ```
 
-### (イ) async による実装（Chrome では 2016年に実装。V8 5.5）
+### (イ) async による実装（Chrome では async を 2016年に実装。V8 5.5）
 ```
 (async () => {
 	console.log('--- A ---');
