@@ -11,7 +11,7 @@ new Promise(f => {  // 敢えて f と書いている（普通は resolve と書
 	console.log('--- B ---');
 })
 .then((msg) => {
-	console.log('--- msg ---');
+	console.log('--- クライアント接続 ---');
 	console.log(msg);
 });
 
@@ -32,7 +32,7 @@ function WaitForClient(f_cb) {
 	console.log('--- A ---');
 	const msg = await WaitForClientAsync();
 	console.log('--- B ---');
-	console.log('--- msg ---');
+	console.log('--- クライアント接続 ---');
 	console.log(msg);
 })();
 
@@ -55,7 +55,7 @@ StartListening(OnConnect);
 console.log('--- Y ---');
 
 function OnConnect(msg) {
-	console.log('--- msg ---');
+	console.log('--- クライアント接続 ---');
 	console.log(msg);
 };
 
